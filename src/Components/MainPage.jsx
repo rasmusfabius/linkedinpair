@@ -9,7 +9,6 @@ class MainPage extends React.Component {
     return (
       <div>
         <NavigationBar></NavigationBar>
-
         <Router>
           <Route path='/'>
             <Profile />

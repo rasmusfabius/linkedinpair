@@ -16,58 +16,45 @@ const ProfileModal = props => {
         {buttonLabel}
       </Button>
       <Modal isOpen={modal} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}>Edit intro</ModalHeader>
+        <ModalHeader toggle={toggle}>Edit Profile</ModalHeader>
         <ModalBody>
           <Form>
             <Row form>
               <Col md={6}>
                 <FormGroup>
-                  <Label for='exampleEmail'>Email</Label>
-                  <Input type='email' name='email' id='exampleEmail' placeholder='with a placeholder' />
+                  <Label for='name'>Name</Label>
+                  <Input type='text' name='name' id='name' placeholder='Mario' />
                 </FormGroup>
               </Col>
               <Col md={6}>
                 <FormGroup>
-                  <Label for='examplePassword'>Password</Label>
-                  <Input type='password' name='password' id='examplePassword' placeholder='password placeholder' />
+                  <Label for='surname'>Surname</Label>
+                  <Input type='text' name='surname' id='surname' placeholder='Smith' />
                 </FormGroup>
               </Col>
             </Row>
-            <FormGroup>
-              <Label for='exampleAddress'>Address</Label>
-              <Input type='text' name='address' id='exampleAddress' placeholder='1234 Main St' />
-            </FormGroup>
-            <FormGroup>
-              <Label for='exampleAddress2'>Address 2</Label>
-              <Input type='text' name='address2' id='exampleAddress2' placeholder='Apartment, studio, or floor' />
-            </FormGroup>
             <Row form>
               <Col md={6}>
                 <FormGroup>
-                  <Label for='exampleCity'>City</Label>
-                  <Input type='text' name='city' id='exampleCity' />
+                  <Label for='email'>Email</Label>
+                  <Input type='email' name='email' id='email' placeholder='user@example.com' />
                 </FormGroup>
               </Col>
-              <Col md={4}>
+              <Col md={6}>
                 <FormGroup>
-                  <Label for='exampleState'>State</Label>
-                  <Input type='text' name='state' id='exampleState' />
-                </FormGroup>
-              </Col>
-              <Col md={2}>
-                <FormGroup>
-                  <Label for='exampleZip'>Zip</Label>
-                  <Input type='text' name='zip' id='exampleZip' />
+                  <Label for='area'>Area</Label>
+                  <Input type='text' name='area' id='area' placeholder='Bangalore' />
                 </FormGroup>
               </Col>
             </Row>
-            <FormGroup check>
-              <Input type='checkbox' name='check' id='exampleCheck' />
-              <Label for='exampleCheck' check>
-                Check me out
-              </Label>
+            <FormGroup>
+              <Label for='title'>Title</Label>
+              <Input type='text' name='title' id='title' placeholder='CTO @ ACME corp' />
             </FormGroup>
-            <Button>Sign in</Button>
+            <FormGroup>
+              <Label for='exampleAddress2'>Bio</Label>
+              <Input type='text' name='bio' id='bio' placeholder='Bio' />
+            </FormGroup>
           </Form>
         </ModalBody>
         <ModalFooter>
