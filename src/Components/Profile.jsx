@@ -3,6 +3,7 @@ import ProfileHeading from './ProfileHeading';
 import AboutUs from './AboutUs';
 
 import { Jumbotron, Container } from 'reactstrap';
+import Api from "../Api";
 
 class Profile extends React.Component {
   state = {
@@ -27,19 +28,14 @@ class Profile extends React.Component {
       </div>
     );
   }
-
-  componentDidMount = async () => {
-    let resp = await fetch('https://strive-school-testing-apis.herokuapp.com/api/profile/me', {
-      headers: {
-        Authorization: 'basic YWRtaW46c3VwZXJzZWNyZXQ='
-      }
-    });
-
-    let prof = await resp.json();
+  async loadData() {
     this.setState({
-      profile: prof
+      profile: await Api.fetch("/profile/me")
     });
-  };
+  }
+  componentDidMount = async () => {
+    this.loadData();
+  }
 }
 
 export default Profile;

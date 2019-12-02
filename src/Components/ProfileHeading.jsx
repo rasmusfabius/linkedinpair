@@ -8,7 +8,7 @@ class ProfileHeading extends React.Component {
       <>
         <div className='my-5 profileHeading'>
           <img src={this.props.profile.image}></img>
-          <ProfileModal />
+          <ProfileModal profile={this.props.profile} />
         </div>
 
         <div>

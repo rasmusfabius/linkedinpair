@@ -49,3 +49,9 @@ img {
   justify-content: space-between;
   align-items: center;
 }
+.buttonEdit {
+  position: relative;
+  top: -125px;
+  right: 0;
+
+}
