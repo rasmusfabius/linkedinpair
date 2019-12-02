@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { Container } from 'reactstrap';
-
-const element = <FontAwesomeIcon icon={faCoffee} />;
 
 class NavigationBar extends Component {
   render() {
@@ -11,7 +7,7 @@ class NavigationBar extends Component {
       <nav className='navbar navbar-expand-lg navbar-light bg-light' id='navbar-color'>
         <Container>
           <a className='navbar-brand' href='#'>
-            Navbar
+            <i class='fab fa-linkedin fa-2x'></i>
           </a>
 
           <form className='form-inline my-2 my-lg-0'>
