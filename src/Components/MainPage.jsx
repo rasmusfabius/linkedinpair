@@ -8,7 +8,7 @@ class MainPage extends React.Component {
   render() {
     return (
       <div>
-        <NavigationBar></NavigationBar>
+        <NavigationBar />
         <Router>
           <Route path='/'>
             <Profile />

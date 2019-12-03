@@ -1,89 +1,84 @@
-import React, {Component} from 'react';
-import {Container} from 'reactstrap';
+import React, { Component } from 'react';
+import { Nav, NavItem, InputGroupAddon, Input, NavLink, InputGroupText, Navbar, NavbarBrand, InputGroup } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faBriefcase, faSearch, faHome, faUsers, faComments, faBell, faTh } from '@fortawesome/free-solid-svg-icons';
 
 class NavigationBar extends Component {
-    render() {
-        return (
-            <nav className='navbar navbar-expand-lg navbar-light bg-light' id='navbar-color'>
-                <Container>
-                    <a className='navbar-brand' href='#'>
-                        <i class='fab fa-linkedin fa-2x'></i>
-                    </a>
-
-                    <form className='form-inline my-2 my-lg-0'>
-                        <input className='form-control mr-sm-2' type='search' placeholder='Search' aria-label='Search'/>
-                    </form>
-                    <button
-                        className='navbar-toggler'
-                        type='button'
-                        data-toggle='collapse'
-                        data-target='#navbarSupportedContent'
-                        aria-controls='navbarSupportedContent'
-                        aria-expanded='false'
-                        aria-label='Toggle navigation'
-                    >
-                        <span className='navbar-toggler-icon'></span>
-                    </button>
-
-                    <div className='collapse navbar-collapse' id='navbarSupportedContent'>
-                        <ul className='navbar-nav mr-auto'>
-                            <li className='nav-item active'>
-                                <a className='nav-link' href='#'>
-                                    Home <span class='sr-only'>(current)</span>
-                                </a>
-                            </li>
-                            <li className='nav-item'>
-                                <a className='nav-link' href='#'>
-                                    My Network
-                                </a>
-                            </li>
-
-                            <li className='nav-item'>
-                                <a className='nav-link ' href='#'>
-                                    Job
-                                </a>
-                            </li>
-                            <li className='nav-item'>
-                                <a className='nav-link ' href='#'>
-                                    Messaging
-                                </a>
-                            </li>
-                            <li className='nav-item'>
-                                <a className='nav-link ' href='#'>
-                                    Notifications
-                                </a>
-                            </li>
-                            <li className='nav-item dropdown'>
-                                <a
-                                    className='nav-link dropdown-toggle'
-                                    href='#'
-                                    id='navbarDropdown'
-                                    role='button'
-                                    data-toggle='dropdown'
-                                    aria-haspopup='true'
-                                    aria-expanded='false'
-                                >
-                                    Me
-                                </a>
-                                <div className='dropdown-menu' aria-labelledby='navbarDropdown'>
-                                    <a className='dropdown-item' href='#'>
-                                        Action
-                                    </a>
-                                    <a className='dropdown-item' href='#'>
-                                        Another action
-                                    </a>
-                                    <div className='dropdown-divider'></div>
-                                    <a className='dropdown-item' href='#'>
-                                        Something else here
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </Container>
-            </nav>
-        );
-    }
+  render() {
+    return (
+      <Navbar className='nav-top  '>
+        <Nav className='mx-auto'>
+          <NavbarBrand href='/'>
+            <FontAwesomeIcon className='linkedin-icon' icon={faLinkedin} />
+          </NavbarBrand>
+          <NavItem>
+            <div className='search-div'>
+              <InputGroup className='search-input'>
+                <InputGroupAddon addonType='prepend'>
+                  <InputGroupText>
+                    <FontAwesomeIcon className='icon-search' icon={faSearch} />
+                  </InputGroupText>
+                </InputGroupAddon>
+                <Input className='main-input' placeholder='Search' />
+              </InputGroup>
+            </div>
+          </NavItem>
+          <NavItem>
+            <div className='nav-item-div'>
+              <FontAwesomeIcon className='nav-icon' icon={faHome} />
+              <NavLink href='#'>Home</NavLink>
+            </div>
+          </NavItem>
+          <NavItem>
+            <div className='nav-item-div'>
+              <FontAwesomeIcon className='nav-icon' icon={faUsers} />
+              <NavLink href='#' active>
+                My Network
+              </NavLink>
+            </div>
+          </NavItem>
+          <NavItem>
+            <div className='nav-item-div'>
+              <FontAwesomeIcon className='nav-icon' icon={faBriefcase} />
+              <NavLink href='#'>Jobs</NavLink>
+            </div>
+          </NavItem>
+          <NavItem>
+            <div className='nav-item-div'>
+              <FontAwesomeIcon className='nav-icon' icon={faComments} />
+              <NavLink href='#'>Messaging</NavLink>
+            </div>
+          </NavItem>
+          <NavItem>
+            <div className='nav-item-div'>
+              <FontAwesomeIcon className='nav-icon' icon={faBell} />
+              <NavLink href='#'>Notifications</NavLink>
+            </div>
+          </NavItem>
+          <NavItem>
+            <div className='nav-item-div'>
+              <div className='profile-image-div'></div>
+              <NavLink href='#'>Me</NavLink>
+            </div>
+          </NavItem>
+          <div className='vl'></div>
+          <NavItem>
+            <div className='nav-item-div'>
+              <FontAwesomeIcon className='nav-icon' icon={faTh} />
+              <NavLink href='#'>Work</NavLink>
+            </div>
+          </NavItem>
+          <NavItem>
+            <div className='nav-item-div'>
+              <FontAwesomeIcon className='nav-icon' icon={faHome} />
+              <NavLink href='#'>Learning</NavLink>
+            </div>
+          </NavItem>
+        </Nav>
+      </Navbar>
+    );
+  }
 }
 
 export default NavigationBar;
