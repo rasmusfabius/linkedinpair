@@ -1,9 +1,8 @@
 import React from 'react';
 import ProfileHeading from './ProfileHeading';
 import AboutUs from './AboutUs';
-
 import { Jumbotron, Container } from 'reactstrap';
-import Api from "../Api";
+import Api from '../Api';
 
 class Profile extends React.Component {
   state = {
@@ -13,7 +12,7 @@ class Profile extends React.Component {
     return (
       <div>
         <Container>
-          <Jumbotron className='jumbotronProfile'>
+          <Jumbotron className='profile-background-image jumbotronProfile'>
             {this.state.profile ? (
               <>
                 <ProfileHeading profile={this.state.profile}></ProfileHeading>
@@ -30,12 +29,12 @@ class Profile extends React.Component {
   }
   async loadData() {
     this.setState({
-      profile: await Api.fetch("/profile/me")
+      profile: await Api.fetch('/profile/me')
     });
   }
   componentDidMount = async () => {
     this.loadData();
-  }
+  };
 }
 
 export default Profile;

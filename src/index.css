@@ -32,6 +32,7 @@ code {
 
 .profile-background-image {
   background-image: url('./Image/backgroundProfile.jpeg');
+  height: 180px;
 }
 .jumbotronProfile {
   background-color: white !important;
@@ -53,5 +54,4 @@ img {
   position: relative;
   top: -125px;
   right: 0;
-
 }
