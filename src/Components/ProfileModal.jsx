@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Col, Row, Form, FormGroup, Label, Input } from 'reactstrap';
-import Api from "../Api";
+import Api from '../Api';
 
 const ProfileModal = props => {
   const { buttonLabel, className } = props;
@@ -10,21 +10,19 @@ const ProfileModal = props => {
 
   const [modal, setModal] = useState(false);
 
-
-
   const toggle = () => setModal(!modal);
 
   const submit = () => {
-    const name = document.getElementById("name").value;
-    const surname = document.getElementById("surname").value;
-    const email = document.getElementById("email").value;
-    const area = document.getElementById("area").value;
-    const title = document.getElementById("title").value;
-    const bio = document.getElementById("bio").value;
-    const image = document.getElementById("image").value;
+    const name = document.getElementById('name').value;
+    const surname = document.getElementById('surname').value;
+    const email = document.getElementById('email').value;
+    const area = document.getElementById('area').value;
+    const title = document.getElementById('title').value;
+    const bio = document.getElementById('bio').value;
+    const image = document.getElementById('image').value;
 
-    const profile = {name, surname, email, area, title, bio, image};
-    Api.fetch("/profile", "PUT", JSON.stringify(profile)).then(() => {
+    const profile = { name, surname, email, area, title, bio, image };
+    Api.fetch('/profile', 'PUT', JSON.stringify(profile)).then(() => {
       toggle();
       window.location.reload();
     });
@@ -32,8 +30,8 @@ const ProfileModal = props => {
 
   return (
     <div>
-      <Button onClick={toggle} className={'buttonEdit'}>
-        <i class='fas fa-pencil-alt fa-2x'></i>
+      <Button onClick={toggle} className={'buttonEdit'} id='buttonEdit'>
+        <i className='fas fa-pencil-alt fa-2x'></i>
         {buttonLabel}
       </Button>
       <Modal isOpen={modal} toggle={toggle} className={className}>
@@ -44,7 +42,7 @@ const ProfileModal = props => {
               <Col md={6}>
                 <FormGroup>
                   <Label for='name'>Name</Label>
-                  <Input type='text' name='name' id='name'  defaultValue={props.profile.name} placeholder='Mario' />
+                  <Input type='text' name='name' id='name' defaultValue={props.profile.name} placeholder='Mario' />
                 </FormGroup>
               </Col>
               <Col md={6}>
@@ -74,11 +72,11 @@ const ProfileModal = props => {
             </FormGroup>
             <FormGroup>
               <Label for='bio'>Bio</Label>
-              <Input type='textarea' name='bio' id='bio' defaultValue={props.profile.bio}  placeholder='Bio' />
+              <Input type='textarea' name='bio' id='bio' defaultValue={props.profile.bio} placeholder='Bio' />
             </FormGroup>
             <FormGroup>
               <Label for='bio'>Image URL</Label>
-              <Input type='text' name='image' id='image' defaultValue={props.profile.image}  placeholder='http://...' />
+              <Input type='text' name='image' id='image' defaultValue={props.profile.image} placeholder='http://...' />
             </FormGroup>
           </Form>
         </ModalBody>
