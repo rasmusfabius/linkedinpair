@@ -1,40 +1,49 @@
 import React from 'react';
 import ProfileHeading from './ProfileHeading';
 import AboutUs from './AboutUs';
-import { Jumbotron, Container } from 'reactstrap';
+import {Jumbotron, Container, Row, Col} from 'reactstrap';
 import Api from '../Api';
+import Experiences from "./Experiences";
 
 class Profile extends React.Component {
-  state = {
-    profile: null
-  };
-  render() {
-    return (
-      <div>
-        <Container>
-          <Jumbotron className='profile-background-image jumbotronProfile'>
-            {this.state.profile ? (
-              <>
-                <ProfileHeading profile={this.state.profile}></ProfileHeading>
+    state = {
+        profile: null
+    };
 
-                <AboutUs aboutUs={this.state.profile.bio}></AboutUs>
-              </>
-            ) : (
-              <h1>Profile info still loading</h1>
-            )}
-          </Jumbotron>
-        </Container>
-      </div>
-    );
-  }
-  async loadData() {
-    this.setState({
-      profile: await Api.fetch('/profile/me')
-    });
-  }
-  componentDidMount = async () => {
-    this.loadData();
-  };
+    render() {
+        return (
+            this.state.profile ? (
+            <div>
+                <Container>
+                    <Row>
+                        <Col className="col-12">
+                            <Jumbotron className='profile-background-image jumbotronProfile'>
+                              <Container>
+                                        <ProfileHeading profile={this.state.profile}/>
+                              </Container>
+                            </Jumbotron>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <AboutUs profile={this.state.profile}/>
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
+                ) : (<h1>Profile info still loading</h1>)
+        );
+    }
+
+    async loadData() {
+        this.setState({
+            profile: await Api.fetch('/profile/me')
+        });
+    }
+
+    componentDidMount = async () => {
+        this.loadData();
+    };
 }
 
 export default Profile;

@@ -34,6 +34,7 @@ code {
   background-image: url('./Image/backgroundProfile.jpeg');
   height: 180px;
 }
+
 .jumbotronProfile {
   background-color: white !important;
   -webkit-box-shadow: 10px 2px 16px -2px rgba(158, 158, 158, 0.68);
