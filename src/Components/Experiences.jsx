@@ -10,7 +10,7 @@ class Experiences extends Component {
 
     async loadData() {
         this.setState({
-            experiences: await Api.fetch('/user13/experiences')
+            experiences: await Api.fetch('/profile/user13/experiences')
         });
     }
 
