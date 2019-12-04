@@ -50,7 +50,6 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
 }
 #buttonEdit {
   position: relative;
@@ -141,4 +140,12 @@ img {
   position: absolute;
   top: 8%;
   left: 10%;
+}
+
+.navVertical {
+  width: 231px;
+  background-color: #040404;
+  height: 100%;
+  position: fixed;
+  display: block;
 }

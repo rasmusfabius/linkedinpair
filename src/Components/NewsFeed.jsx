@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Jumbotron, Container, Row, Col } from 'reactstrap';
 import Api from '../Api';
+import NewsFeedAdd from './NewsFeedAdd';
 
 class NewsFeed extends Component {
     state = {
@@ -20,7 +21,7 @@ class NewsFeed extends Component {
         return (
             <>
                 <Container>
-
+                    <NewsFeedAdd />
                     <Row>
                         <Col>
                             <ul>
