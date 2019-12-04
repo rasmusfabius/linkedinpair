@@ -1,9 +1,10 @@
 import React from 'react';
-import Profile from './Profile';
+
 import NavigationBar from './NavigationBar';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import Experiences from "./Experiences";
+
 import ProfilePage from "./ProfilePage";
+import NewsFeed from './NewsFeed';
 
 class MainPage extends React.Component {
   state = {};
@@ -14,8 +15,12 @@ class MainPage extends React.Component {
         <NavigationBar />
         <Router>
           <Route path='/'>
-              <ProfilePage/>
+            <ProfilePage />
           </Route>
+          <Route path='/NewsFeed'>
+            <NewsFeed />
+          </Route>
+
         </Router>
       </div>
 

@@ -48,13 +48,14 @@ class Experiences extends Component {
                         <Col>
                             <ul>
                                 <div classNames='card'>
-                                    <h5 className='card-header'>Featured</h5>
+                                    <h5 className='card-header'>Experience</h5>
                                     <div className='card-body'>
-                                        <h5 className='card-title'>Special title treatment</h5>
+
                                         {this.state.experiences.map(exp => (
                                             <>
+                                                <h5 className='card-title'>{exp.role}</h5>
                                                 <p className='card-text'>
-                                                    {exp.role} at {exp.company} in {exp.area} - {exp.startDate} to {exp.endDate} + {exp._id}
+                                                    {exp.company} in {exp.area} - {exp.startDate} to {exp.endDate} + {exp._id}
                                                     <button onClick={() => this.setState({ selectedExp: exp })}>EDIT</button>
                                                     <button onClick={() => this.deleteExperience(exp)}>DELETE</button>
                                                 </p>

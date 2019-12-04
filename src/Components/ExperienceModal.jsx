@@ -45,14 +45,14 @@ class ExperienceModal extends React.Component {
                             <Row form>
                                 <Col md={12}>
                                     <FormGroup>
-                                        <Label for='title'>Start date *</Label>
+                                        <Label for='startDate'>Start date *</Label>
                                         <Input
                                             type='date'
                                             name='startDate'
                                             id='startDate'
                                             value={this.props.experience.startDate}
                                             onChange={(val) => this.props.updateExp(val)}
-                                            placeholder='Full-stack Developer'
+
                                         />
                                     </FormGroup>
                                 </Col>
@@ -60,14 +60,14 @@ class ExperienceModal extends React.Component {
                             <Row form>
                                 <Col md={12}>
                                     <FormGroup>
-                                        <Label for='title'>End date *</Label>
+                                        <Label for='endDate'>End date *</Label>
                                         <Input
                                             type='date'
                                             name='endDate'
                                             id='endDate'
                                             value={this.props.experience.endDate}
                                             onChange={(val) => this.props.updateExp(val)}
-                                            placeholder='Full-stack Developer'
+
                                         />
                                     </FormGroup>
                                 </Col>
@@ -75,7 +75,7 @@ class ExperienceModal extends React.Component {
                             <Row form>
                                 <Col md={12}>
                                     <FormGroup>
-                                        <Label for='employment'>Employment type</Label>
+                                        <Label for='role'>Role</Label>
                                         <Input type='text' name='role' id='role' value={this.props.experience.role}
                                             onChange={(val) => this.props.updateExp(val)} placeholder='-' />
                                     </FormGroup>
@@ -85,7 +85,7 @@ class ExperienceModal extends React.Component {
                                 <Col md={12}>
                                     <FormGroup>
                                         <Label for='company'>Company *</Label>
-                                        <Input type='company' name='email' id='company' value={this.props.experience.company}
+                                        <Input type='company' name='company' id='company' value={this.props.experience.company}
                                             onChange={(val) => this.props.updateExp(val)} placeholder='Eg: Google LLC' />
                                     </FormGroup>
                                 </Col>
@@ -93,7 +93,7 @@ class ExperienceModal extends React.Component {
                             <Row form>
                                 <Col md={12}>
                                     <FormGroup>
-                                        <Label for='location'>Location</Label>
+                                        <Label for='area'>Area</Label>
                                         <Input type='text' name='area' id='area' defaultValue={props.experience.location} placeholder='Bangalore' />
                                     </FormGroup>
                                 </Col>

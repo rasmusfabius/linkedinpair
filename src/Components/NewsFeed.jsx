@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
-import { Jumbotron, Button } from 'reactstrap';
+import { Jumbotron, Container, Row, Col } from 'reactstrap';
 import Api from '../Api';
 
-
-
-export default class NewsFeed extends Component {
+class NewsFeed extends Component {
     state = {
         newsfeed: null
     }
     async loadData() {
         this.setState({
-            newsfeed: await Api.fetch('.profile/api/posts/')
+            newsfeed: await Api.fetch('/posts/')
         })
     }
     componentDidMount = async () => {
@@ -20,19 +18,37 @@ export default class NewsFeed extends Component {
         if (!this.state.newsfeed)
             return null;
         return (
-            <div>
-                <Jumbotron>
-                    <h1 className='display-3'>Hello, world!</h1>
-                    <p className='lead'>
-                        This is a simple hero unit, a simple Jumbotron-style component for calling extra attention to featured content or information.
-          </p>
-                    <hr className='my-2' />
-                    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-                    <p className='lead'>
-                        <Button color='primary'>Learn More</Button>
-                    </p>
-                </Jumbotron>
-            </div>
+            <>
+                <Container>
+
+                    <Row>
+                        <Col>
+                            <ul>
+                                <div classNames='card'>
+                                    <h5 className='card-header'>NEWS FEED</h5>
+                                    <div className='card-body'>
+
+                                        {this.state.newsfeed.map(news => (
+                                            <>
+                                                <Jumbotron>
+                                                    <p className='card-text'>
+                                                        {news.username}
+                                                        {news.text}
+                                                        {news.createdAt}
+
+                                                    </p>
+                                                </Jumbotron>
+                                            </>
+                                        ))}
+                                    </div>
+                                </div>
+                            </ul>
+                        </Col>
+                    </Row>
+
+
+                </Container>
+            </>
         );
     }
 }
