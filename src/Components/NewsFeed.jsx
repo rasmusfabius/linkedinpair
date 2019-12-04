@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Jumbotron, Container, CardText, Row, Col } from 'reactstrap';
+import { Jumbotron, Container, CardText, ListGroup, Row, Col, ListGroupItem } from 'reactstrap';
 import Api from '../Api';
 import NewsFeedAdd from './NewsFeedAdd';
 import Moment from 'react-moment';
+import reactLogo from "../Image/react.svg"
 
 class NewsFeed extends Component {
     state = {
@@ -33,11 +34,12 @@ class NewsFeed extends Component {
                                         {this.state.newsfeed.map(news => (
                                             <>
                                                 <Jumbotron>
-                                                    <p className='card-text'> <CardText className='newsFeedUser'>{news.username} </CardText>
-                                                        <CardText className='newFeedText'>{news.text}</CardText>
-                                                        <Moment format="DD MMM YYYY">{news.createdAt}</Moment>
+                                                    <ListGroup>
+                                                        <ListGroupItem>{news.username} <img src={reactLogo} style={{ width: 40   }}></img></ListGroupItem>
+                                                        <ListGroupItem>{news.text}</ListGroupItem>
+                                                        <ListGroupItem><Moment format="DD MMM YYYY">{news.createdAt}</Moment></ListGroupItem>
 
-                                                    </p>
+                                                    </ListGroup>
                                                 </Jumbotron>
                                             </>
                                         ))}
