@@ -19,14 +19,27 @@ class Experiences extends Component {
     };
 
     render() {
+        if (!this.state.experiences)
+            return null;
         return (
+
             <Container>
-                <Row>
-                    <Col>
-                    <ExperienceModal experience={{}}/>
-                    </Col>
-                </Row>
+                <Jumbotron>
+                    <Row>
+                        <Col>
+                            <ExperienceModal experience={{}}/>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <ul>
+                                {this.state.experiences.map((exp) => <li>{exp.role} at {exp.company} in {exp.area}</li>)}
+                            </ul>
+                        </Col>
+                    </Row>
+                </Jumbotron>
             </Container>
+
         );
     }
 }
