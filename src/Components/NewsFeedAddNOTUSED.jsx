@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
-import NewsFeedModal from "./NewsFeedModal"
+import { Container, Jumbotron, Row, Col } from 'reactstrap';
 
 import Api from "../Api";
 
@@ -12,30 +11,15 @@ class NewsFeedAdd extends Component {
     submit() {
         Api.fetch("/posts/", "POST", JSON.stringify(this.state)).then(() => {
             this.props.refresh();
-
         });
 
-    }
-
-    updateFeed = (newText) => {
-        this.setState({ text: newText })
     }
 
     render() {
         return (
             <Row>
-                <Col sm="12">
-
-                    <div className="display-flex bodyNewsFeed">
-                        <NewsFeedModal updateFeed={this.updateFeed} />
-                        <button className="share-box_trigger share-box_trigger1"><i class="fas fa-camera fa-2x iconNewsFeed"></i></button>
-                        <button className="share-box_trigger share-box_trigger1"><i class="fas fa-video fa-2x iconNewsFeed"></i></button>
-                        <button className="share-box_trigger share-box_trigger1"><i class="far fa-file-alt fa-2x iconNewsFeed"></i></button>
-                    </div>
-
-                </Col>
-
-                {/*       <div className="new-post-container">
+                <Col>
+                    <div className="new-post-container">
                         <div>
                             <h5>ADD NEWS</h5>
                             <textarea className="form-control" rows="3" cols="50" value={this.state.name} name="text"
@@ -48,8 +32,8 @@ class NewsFeedAdd extends Component {
                             }}> Post
                             </button>
                         </div>
-                    </div> */}
-
+                    </div>
+                </Col>
             </Row>
         )
     }
