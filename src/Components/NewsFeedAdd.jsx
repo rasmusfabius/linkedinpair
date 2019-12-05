@@ -1,5 +1,6 @@
-import React, {Component} from 'react'
-import {Container, Jumbotron, Row, Col} from 'reactstrap';
+import React, { Component } from 'react'
+import { Container, Jumbotron, Row, Col } from 'reactstrap';
+
 import Api from "../Api";
 
 class NewsFeedAdd extends Component {
@@ -10,7 +11,7 @@ class NewsFeedAdd extends Component {
     submit() {
         Api.fetch("/posts/", "POST", JSON.stringify(this.state)).then(() => {
             this.props.refresh();
-            });
+        });
 
     }
 
@@ -22,10 +23,10 @@ class NewsFeedAdd extends Component {
                         <div>
                             <h5>ADD NEWS</h5>
                             <textarea className="form-control" rows="3" cols="50" value={this.state.name} name="text"
-                                      onChange={(data) => {
-                                          this.setState({text: data.target.value})
-                                      }}/>
-                            <br/>
+                                onChange={(data) => {
+                                    this.setState({ text: data.target.value })
+                                }} />
+                            <br />
                             <button onClick={() => {
                                 this.submit()
                             }}> Post
