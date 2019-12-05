@@ -53,7 +53,7 @@ class ExperienceModal extends React.Component {
             var formData = new FormData();
             formData.append("experience", this.state.selectedFile);
 
-            Api.request("/profile/" + Api.USER + "/experiences/" + expId + "/picture", 'POST', formData, "application/x-www-form-urlencoded");
+            Api.request("/profile/" + Api.USER + "/experiences/" + expId + "/picture", 'POST', formData);
             this.props.showUpdatedExperience(true);
             this.setState({modal: false});
             //send the new experience to the parent component. the parent component shoukld just push it into the exprience array
