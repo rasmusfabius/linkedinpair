@@ -1,5 +1,9 @@
 class Api {
-    static AUTH = btoa('user13:6c#k#ANpA&k^s3t2');
+    // static USER = "user27";
+    // static PASSWORD = "ZGDWyFCA8umbgpvZ";
+    static USER = "user13";
+    static PASSWORD = "6c#k#ANpA&k^s3t2";
+    static AUTH = btoa(Api.USER + ':' + Api.PASSWORD);
     static BASE_URL = "https://striveschool.herokuapp.com/api";
     static BASE_HEADERS = {
         Authorization: 'basic ' + Api.AUTH,

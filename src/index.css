@@ -123,11 +123,11 @@ img {
   border-left: 1px solid white;
   height: 51px;
 }
-.profile-image-div {
-  background-image: url('/assets/img/sapa.jpg');
+.profile-image-div img {
+  /*background-image: url('/assets/img/sapa.jpg');*/
   background-size: cover;
-  margin-left: 27px !important;
-  border-radius: 50%;
+  /*margin-left: 27px !important;*/
+   /*border-radius: 50%;*/
   border: 0.5px solid white;
   width: 24px;
   height: 24px;
@@ -148,4 +148,69 @@ img {
   height: 100%;
   position: fixed;
   display: block;
+}
+
+.experience-detail {
+  display: flex;
+  align-items: center;
+}
+
+.experience-role {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.button-margin {
+  margin: 5px;
+}
+
+.new-post-container {
+  padding: 15px;
+  background-color: #e9ecef;
+  border-radius: 3px;
+}
+
+.user-image {
+  width: 60px;
+  height: 60px;
+}
+
+.user-name {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.user-title {
+  font-size: smaller;
+  line-height: 18px;
+}
+
+.details-container {
+  margin-left: 10px;
+}
+
+.post-detail {
+  display: flex;
+  align-items: center;
+}
+
+.post-age {
+  line-height: 14px;
+  font-size: smaller;
+}
+
+.post-bottom-icons {
+  display: flex;
+  align-items: center;
+}
+
+.post-bottom-icon {
+  margin-left: 15px;
+  margin-right: 5px;
+  flex: 0 0  auto;
+}
+
+.post-bottom-spacer {
+  flex: 1 1 auto;
 }

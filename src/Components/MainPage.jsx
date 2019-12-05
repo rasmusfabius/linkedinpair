@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {Container} from 'reactstrap'
 import NavigationBar from './NavigationBar';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
@@ -14,13 +14,14 @@ class MainPage extends React.Component {
 
         <NavigationBar />
         <Router>
-          <Route path='/'>
+          <Route path='/' exact>
             <ProfilePage />
           </Route>
           <Route path='/NewsFeed'>
+              <Container>
             <NewsFeed />
+              </Container>
           </Route>
-
         </Router>
       </div>
 

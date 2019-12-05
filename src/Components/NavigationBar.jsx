@@ -3,8 +3,18 @@ import { Nav, NavItem, InputGroupAddon, Input, NavLink, InputGroupText, Navbar, 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faBriefcase, faSearch, faHome, faUsers, faComments, faBell, faTh } from '@fortawesome/free-solid-svg-icons';
+import Api from "../Api";
 
 class NavigationBar extends Component {
+  state = {user: null};
+  async loadData() {
+    const data = await Api.fetch('/profile/me');
+    this.setState({user: data});
+  }
+  componentDidMount() {
+    this.loadData();
+  }
+
   render() {
     return (
       <Navbar className='nav-top  '>
@@ -58,7 +68,9 @@ class NavigationBar extends Component {
           </NavItem>
           <NavItem>
             <div className='nav-item-div'>
-              <div className='profile-image-div'></div>
+              <div className='profile-image-div'>
+                {this.state.user && <img src={this.state.user.image} />}
+              </div>
               <NavLink href='#'>Me</NavLink>
             </div>
           </NavItem>
