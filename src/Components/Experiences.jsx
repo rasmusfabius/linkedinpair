@@ -82,6 +82,7 @@ class Experiences extends Component {
                                     <Col>
                                         <div classNames='card'>
                                             <div className='card-body'>
+                                                <div className="company-logo">{exp.picture}</div>
                                                 <div className="experience-role">{exp.role}</div>
                                                 <div className='card-text experience-detail'>
                                                     <div

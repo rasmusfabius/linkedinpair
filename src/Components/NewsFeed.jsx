@@ -32,6 +32,7 @@ class NewsFeed extends Component {
     }
 
     componentDidMount = async () => {
+        setInterval(() => this.loadData(), 30000);
         this.loadData();
     };
 
