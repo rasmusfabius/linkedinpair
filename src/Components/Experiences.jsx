@@ -82,8 +82,10 @@ class Experiences extends Component {
                                     <Col>
                                         <div classNames='card'>
                                             <div className='card-body'>
-                                                <div className="company-logo">{exp.picture}</div>
+
+                                                <img src={exp.image} className="exp-image" />
                                                 <div className="experience-role">{exp.role}</div>
+
                                                 <div className='card-text experience-detail'>
                                                     <div
                                                         className="flex-grow-1">{exp.company} in {exp.area} from {this.formatDate(exp.startDate)} to {this.formatDate(exp.endDate)}</div>

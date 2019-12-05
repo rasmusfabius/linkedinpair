@@ -196,7 +196,13 @@ code {
     height: 60px;
     border-radius: 50%;
 }
+.exp-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #221f1f ;
 
+}
 .user-name {
     font-weight: bold;
     font-size: 18px;

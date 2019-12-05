@@ -30,7 +30,7 @@ class Api {
     static request(endpoint, method = 'GET', body) {
         var request = new XMLHttpRequest();
         request.open("POST", Api.BASE_URL + endpoint, false);
-        request.setRequestHeader("Authorization", Api.AUTH);
+        request.setRequestHeader("Authorization", "basic " + Api.AUTH);
         request.send(body);
     }
 }
