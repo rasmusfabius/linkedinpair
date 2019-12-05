@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Jumbotron, Container, CardText, ListGroup, Row, Col, ListGroupItem, Button } from 'reactstrap';
 import Api from '../Api';
+
 import NewsFeedAdd from './NewsFeedAdd';
-import NewsFeedAdd2 from './NewsFeedAdd2';
 
 import moment from "moment";
 
@@ -40,7 +40,7 @@ class NewsFeed extends Component {
             return null;
         return (
             <>
-                <NewsFeedAdd2 refresh={this.loadData.bind(this)} />
+                <NewsFeedAdd refresh={this.loadData.bind(this)} />
                 <Row>
                     <Col>
                         <div className="new-post-container">

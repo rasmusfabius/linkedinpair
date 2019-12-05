@@ -31,14 +31,14 @@ const NewsFeedModel = (props) => {
                 <ModalHeader className="modalHeaderNfModal" toggle={toggle}>Create a post</ModalHeader>
                 <ModalBody>
                     <textarea onChange={(e) => handleOnChange(e)} className="form-control" rows="3" cols="50"></textarea>
-
                 </ModalBody>
                 <ModalFooter>
-                    <i class="fas fa-plus"></i>
-                    <i class="fas fa-camera-retro"></i>
-                    <i class="far fa-sticky-note"></i>
+                    <div className="modalFooter">
+                        <i class="fas fa-plus fa-2x"></i>
+                        <i class="fas fa-camera-retro fa-2x"></i>
+                        <i class="far fa-sticky-note fa-2x"></i>
+                    </div>
                     <Button color="primary" onClick={toggle}>Post</Button>
-
                 </ModalFooter>
             </Modal>
         </div>
