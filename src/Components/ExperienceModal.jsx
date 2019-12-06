@@ -9,14 +9,23 @@ class ExperienceModal extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {modal: false};
+        this.state = {modal: false, selectedFile: null};
     }
+
     toggle() {
         if (!this.props.experience._id)
             this.setState({modal: !this.state.modal});
         if (this.state.modal === false) {
             this.props.showUpdatedExperience(false);
         }
+    }
+
+    onChangeHandler = event => {
+        console.log(event.target.files[0]);
+        this.setState({
+            selectedFile: event.target.files[0],
+            loaded: 0,
+        })
     }
 
     submit() {
@@ -39,7 +48,12 @@ class ExperienceModal extends React.Component {
         if (this.state.presentWork) {
             this.props.updateExp({target: {name: "endDate", value: null}});
         }
-        Api.fetch('/profile/user13/experiences' + append, method, JSON.stringify(this.props.experience)).then(() => {
+        Api.fetch('/profile/' + Api.USER + '/experiences' + append, method, JSON.stringify(this.props.experience)).then((res) => {
+            const expId = this.props.experience._id || res._id;
+            var formData = new FormData();
+            formData.append("experience", this.state.selectedFile);
+
+            Api.request("/profile/" + Api.USER + "/experiences/" + expId + "/picture", 'POST', formData);
             this.props.showUpdatedExperience(true);
             this.setState({modal: false});
             //send the new experience to the parent component. the parent component shoukld just push it into the exprience array
@@ -140,6 +154,15 @@ class ExperienceModal extends React.Component {
                                         <Label for='description'>Description</Label>
                                         <Input type='text' name='description' id='description'
                                                defaultValue={props.experience.description} placeholder=''/>
+                                    </FormGroup>
+                                </Col>
+                            </Row>
+                            <Row form>
+                                <Col md={12}>
+                                    <FormGroup>
+                                        <Label for='description'>Upload Photo</Label>
+                                        <Input type='file' name='picture' id='picture'
+                                               onChange={this.onChangeHandler} placeholder=''/>
                                     </FormGroup>
                                 </Col>
                             </Row>

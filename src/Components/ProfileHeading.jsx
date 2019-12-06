@@ -9,7 +9,7 @@ class ProfileHeading extends React.Component {
             <Row>
                 <Col className="col-12">
                     <div className='my-5 profileHeading'>
-                        <img src={this.props.profile.image} />
+                        <img className={'profile-foto'} src={this.props.profile.image}  alt={'profile'}/>
                         <ProfileModal profile={this.props.profile} />
                     </div>
                 </Col>

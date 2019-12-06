@@ -8,9 +8,16 @@ const ProfileModal = props => {
 
   const profile = JSON.parse(JSON.stringify(props.profile));
 
+  let selectedFile = useState(null);
+
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
+
+  const onChangeHandler = event => {
+    console.log(event.target.files[0]);
+    selectedFile = event.target.files[0];
+  };
 
   const submit = () => {
     const name = document.getElementById('name').value;
@@ -19,10 +26,14 @@ const ProfileModal = props => {
     const area = document.getElementById('area').value;
     const title = document.getElementById('title').value;
     const bio = document.getElementById('bio').value;
-    const image = document.getElementById('image').value;
+    // const image = document.getElementById('image').value;
 
-    const profile = { name, surname, email, area, title, bio, image };
+    const profile = { name, surname, email, area, title, bio };
+    console.log(selectedFile);
     Api.fetch('/profile', 'PUT', JSON.stringify(profile)).then(() => {
+      var formData = new FormData();
+      formData.append("profile", selectedFile);
+      Api.request("/profile/" + Api.USER + "/picture", "POST", formData);
       toggle();
       window.location.reload();
     });
@@ -75,8 +86,9 @@ const ProfileModal = props => {
               <Input type='textarea' name='bio' id='bio' defaultValue={props.profile.bio} placeholder='Bio' />
             </FormGroup>
             <FormGroup>
-              <Label for='bio'>Image URL</Label>
-              <Input type='text' name='image' id='image' defaultValue={props.profile.image} placeholder='http://...' />
+              <Label for='description'>Upload Photo</Label>
+              <Input type='file' name='picture' id='picture'
+                     onChange={onChangeHandler} placeholder=''/>
             </FormGroup>
           </Form>
         </ModalBody>

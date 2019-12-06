@@ -69,7 +69,7 @@ class NavigationBar extends Component {
           <NavItem>
             <div className='nav-item-div'>
               <div className='profile-image-div'>
-                {this.state.user && <img src={this.state.user.image} />}
+                {this.state.user && <img className={'nav-user-foto'} src={this.state.user.image} alt={'profile'}/>}
               </div>
               <NavLink href='#'>Me</NavLink>
             </div>
