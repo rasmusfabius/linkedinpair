@@ -9,7 +9,7 @@ import moment from "moment";
 class NewsFeed extends Component {
     state = {
         newsfeed: null
-    }
+    };
 
     async loadData() {
         // load posts and users
@@ -18,6 +18,7 @@ class NewsFeed extends Component {
         // map the user object to his post
         newsfeed.map(post => {
             post.user = users.find(user => user.username === post.username);
+            return post;
         });
         newsfeed.reverse();
         this.setState({
@@ -25,10 +26,18 @@ class NewsFeed extends Component {
         });
     }
 
+    updateSelectedFile = (e, news) => {
+        console.log(e.target);
+        var formData = new FormData();
+        formData.append("post", e.target.files[0]);
+        Api.request("/posts/" + news._id, "POST", formData);
+        this.loadData();
+    };
+
     deleteExperience = async (post) => {
         let resp = await Api.fetch("/posts/" + post._id, "DELETE");
         var expWithoutCurrent = this.state.newsfeed.filter(x => x._id !== post._id);
-        this.setState({ newsfeed: expWithoutCurrent })
+        this.setState({ newsfeed: expWithoutCurrent });
     }
 
     componentDidMount = async () => {
@@ -39,6 +48,7 @@ class NewsFeed extends Component {
     render() {
         if (!this.state.newsfeed)
             return null;
+        const allnews = [...this.state.newsfeed];
         return (
             <>
                 <NewsFeedAdd refresh={this.loadData.bind(this)} />
@@ -48,9 +58,9 @@ class NewsFeed extends Component {
                             <h4>NEWS FEED</h4>
                         </div>
                         <div>
-                            {this.state.newsfeed.map(news => (
-                                <>
-                                    <div className="new-post-container">
+                            {allnews.map(news => (
+
+                                    <div className="new-post-container" key={news._id}>
                                         <ListGroup>
                                             <ListGroupItem>
                                                 <div className="post-detail">
@@ -68,6 +78,9 @@ class NewsFeed extends Component {
                                                 </div>
                                             </ListGroupItem>
                                             <ListGroupItem>{news.text}</ListGroupItem>
+                                            <ListGroupItem>
+                                                <img src={news.image} alt={'image'} />
+                                            </ListGroupItem>
                                             <ListGroupItem>
                                                 <div className="post-age">
                                                     <div className="post-bottom-icons">
@@ -105,6 +118,7 @@ class NewsFeed extends Component {
                                                             <div>Share</div>
                                                         </div>
                                                         <div className="post-bottom-spacer" />
+
                                                         {(Api.USER === news.username) && <Button className="button-margin" size="sm" onClick={() => this.deleteExperience(news)}><i className='fas fa-trash'></i></Button>}
                                                     </div>
                                                 </div>
@@ -112,7 +126,7 @@ class NewsFeed extends Component {
                                             </ListGroupItem>
                                         </ListGroup>
                                     </div>
-                                </>
+
                             ))}
                         </div>
                     </Col>

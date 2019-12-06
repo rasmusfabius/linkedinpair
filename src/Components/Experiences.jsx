@@ -83,7 +83,7 @@ class Experiences extends Component {
                                         <div classNames='card'>
                                             <div className='card-body'>
 
-                                                <img src={exp.image} className="exp-image" />
+                                                <img src={exp.image} className="exp-image"/>
                                                 <div className="experience-role">{exp.role}</div>
 
                                                 <div className='card-text experience-detail'>
