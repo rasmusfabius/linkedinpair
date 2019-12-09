@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import {Container, Jumbotron, Row, Col, Button} from 'reactstrap';
+import {Button, Col, Container, Jumbotron, Row} from 'reactstrap';
 import ExperienceModal from './ExperienceModal';
 import Api from '../Api';
-import Moment from 'react-moment';
 import moment from "moment";
 
 class Experiences extends Component {
@@ -12,7 +11,11 @@ class Experiences extends Component {
     };
 
     async loadData() {
-        const data = await Api.fetch('/profile/' + Api.USER + '/experiences');
+        let user = Api.USER;
+        if (this.props.match) {
+            user = this.props.match;
+        }
+        const data = await Api.fetch('/profile/' + user + '/experiences');
         data.map((data) => {
             //trasforming back the data to the correct format for the input
             data.startDate = moment(data.startDate).format("YYYY-MM-DD");
@@ -34,6 +37,12 @@ class Experiences extends Component {
         this.setState({selectedExp: {}});
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.match !== this.props.match) {
+            this.loadData();
+        }
+    }
+
     deleteExperience = async (exp) => {
         let resp = await Api.fetch("/profile/user13/experiences/" + exp._id, "DELETE");
         var expWithoutCurrent = this.state.experiences.filter(x => x._id !== exp._id);
@@ -41,6 +50,7 @@ class Experiences extends Component {
     }
 
     updateExperience = (val) => {
+        console.log(val.target);
         let currentExp = this.state.selectedExp;
         currentExp[val.target.name] = val.target.value;
         this.setState({selectedExp: currentExp})
@@ -63,6 +73,9 @@ class Experiences extends Component {
 
     render() {
         if (!this.state.experiences) return null;
+        this.state.experiences.map((user) => {
+           user.canEdit = Api.USER === user.username
+        });
         return (
             <Container>
                 <Jumbotron>
@@ -81,24 +94,27 @@ class Experiences extends Component {
                                 <Row>
                                     <Col>
                                         <div classNames='card'>
-                                            <div className='card-body'>
+                                            <div className='card-body' style={{display: 'flex', alignItems: 'center'}}>
+                                                <div>
+                                                    <img src={exp.image} className="exp-image"/>
+                                                </div>
+                                                <div style={{flex: "1 1 auto"}}>
+                                                    <div className="experience-role">{exp.role}</div>
 
-                                                <img src={exp.image} className="exp-image"/>
-                                                <div className="experience-role">{exp.role}</div>
+                                                    <div className='card-text experience-detail'>
+                                                        <div
+                                                            className="flex-grow-1">{exp.company} in {exp.area} from {this.formatDate(exp.startDate)} to {this.formatDate(exp.endDate)}</div>
 
-                                                <div className='card-text experience-detail'>
-                                                    <div
-                                                        className="flex-grow-1">{exp.company} in {exp.area} from {this.formatDate(exp.startDate)} to {this.formatDate(exp.endDate)}</div>
-                                                    <div>
-                                                        <Button className="button-margin" size="sm"
-                                                                onClick={() => this.setState({selectedExp: {...exp}})}><i
-                                                            className='fas fa-pencil-alt'></i></Button>
-                                                        <Button className="button-margin" size="sm"
-                                                                onClick={() => this.deleteExperience(exp)}><i
-                                                            className='fas fa-trash'></i></Button>
                                                     </div>
                                                 </div>
-                                                <hr/>
+                                                {exp.canEdit && <div>
+                                                    <Button className="button-margin" size="sm"
+                                                            onClick={() => this.setState({selectedExp: {...exp}})}><i
+                                                        className='fas fa-pencil-alt'></i></Button>
+                                                    <Button className="button-margin" size="sm"
+                                                            onClick={() => this.deleteExperience(exp)}><i
+                                                        className='fas fa-trash'></i></Button>
+                                                </div>}
                                             </div>
                                         </div>
                                     </Col>

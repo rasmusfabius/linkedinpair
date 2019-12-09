@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
-import {Jumbotron, Container, CardText, ListGroup, Row, Col, ListGroupItem, Button} from 'reactstrap';
+import {Button, Col, ListGroup, ListGroupItem, Row} from 'reactstrap';
 import Api from '../Api';
 import NewsFeedAdd from './NewsFeedAdd';
+import NewsFeedEdit from './NewsFeedEdit'
 import moment from "moment";
+import SearchProfile from "./SearchProfile";
 
 class NewsFeed extends Component {
     state = {
@@ -10,7 +12,7 @@ class NewsFeed extends Component {
         selectedNews: {}
     };
 
-    async loadData() {
+    loadData = async () => {
         // load posts and users
         const newsfeed = await Api.fetch('/posts/');
         const users = await Api.fetch('/profile/');
@@ -23,7 +25,7 @@ class NewsFeed extends Component {
         this.setState({
             newsfeed: newsfeed
         });
-    }
+    };
 
     componentDidMount = async () => {
         setInterval(() => this.loadData(), 10000);
@@ -33,24 +35,24 @@ class NewsFeed extends Component {
     resetUpdate() {
         this.setState({selectedNews: {}});
     }
+
     deleteNewsfeed = async (post) => {
         let resp = await Api.fetch("/posts/" + post._id, "DELETE");
         var newsWithoutCurrent = this.state.newsfeed.filter(x => x._id !== post._id);
         this.setState({newsfeed: newsWithoutCurrent});
     }
-    updateNewsfeed = (val) => {
-        let currentNews = this.state.selectedNews;
-        currentNews[val.target.name] = val.target.value;
-        this.setState({selectedNews: currentNews})
-    }
-    updateNewsfeed = (e, news) => {
-        console.log(e.target);
-        var formData = new FormData();
-        formData.append("post", e.target.files[0]);
-        Api.request("/posts/" + news._id, "POST", formData);
-        this.loadData();
-    };
-
+    // updateNewsfeed = (val) => {
+    //     let currentNews = this.state.selectedNews;
+    //     currentNews[val.target.name] = val.target.value;
+    //     this.setState({selectedNews: currentNews})
+    // }
+    // updateNewsfeed = (e, news) => {
+    //     console.log(e.target);
+    //     var formData = new FormData();
+    //     formData.append("post", e.target.files[0]);
+    //     Api.request("/posts/" + news._id, "POST", formData);
+    //     this.loadData();
+    // };
 
 
     showUpdatedNewsfeed = (update) => {
@@ -66,9 +68,14 @@ class NewsFeed extends Component {
         if (!this.state.newsfeed)
             return null;
         const allnews = [...this.state.newsfeed];
+        allnews.map((news) => {
+
+           news.isUpdated = news.updatedAt && (moment(news.createdAt).format("HH:mm") !== moment(news.updatedAt).format("HH:mm"))
+        });
         return (
             <>
-                <NewsFeedAdd refresh={this.loadData.bind(this)}/>
+
+                <NewsFeedAdd refresh={this.loadData}/>
                 <Row>
                     <Col>
                         <div className="new-post-container">
@@ -89,7 +96,7 @@ class NewsFeed extends Component {
                                                     <div
                                                         className="user-title">{news.user.title} in {news.user.area}</div>
                                                     <div
-                                                        className="post-age">{moment(news.createdAt).fromNow()}</div>
+                                                        className="post-age">{moment(news.createdAt).fromNow()} {news.isUpdated && <span>- updated {moment(news.updatedAt).fromNow()}</span>}</div>
                                                 </div>
                                             </div>
                                         </ListGroupItem>
@@ -136,26 +143,25 @@ class NewsFeed extends Component {
                                                     <div className="post-bottom-spacer"/>
 
                                                     {(Api.USER === news.username) &&
-                                                    <Button className="button-margin" size="sm"
-                                                            onClick={() => this.updateNewsfeed(news)}>
-                                                        <i className='fas fa-pencil-alt'></i></Button>}
+                                                    <NewsFeedEdit news={news} refresh={this.loadData}/>
+                                                    }
                                                     <Button className="button-margin" size="sm"
                                                             onClick={() => this.deleteNewsfeed(news)}> <i
                                                         className='fas fa-trash'></i></Button>
                                                 </div>
-                                                < /div>
+                                            </div>
                                         </ListGroupItem>
                                     </ListGroup>
                                 </div>
 
-                                ))}
-                                </div>
-                                </Col>
-                                </Row>
+                            ))}
+                        </div>
+                    </Col>
+                </Row>
 
-                                </>
-                                );
-                            }
-                            }
+            </>
+        );
+    }
+}
 
-                            export default NewsFeed;
+export default NewsFeed;

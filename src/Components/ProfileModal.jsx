@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { Col, Row, Form, FormGroup, Label, Input } from 'reactstrap';
+import React, {useState} from 'react';
+import {Button, Col, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader, Row} from 'reactstrap';
 import Api from '../Api';
 
 const ProfileModal = props => {

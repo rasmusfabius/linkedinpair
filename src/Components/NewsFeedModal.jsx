@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Label, Input, FormGroup} from 'reactstrap';
-import Api from "../Api";
+import {Button, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 
 
 const NewsFeedModel = (props) => {

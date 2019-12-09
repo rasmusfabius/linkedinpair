@@ -1,6 +1,5 @@
-import React, {useState} from 'react';
-import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
-import {Col, Row, Form, FormGroup, Label, Input} from 'reactstrap';
+import React from 'react';
+import {Button, Col, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader, Row} from 'reactstrap';
 import Api from '../Api';
 
 class ExperienceModal extends React.Component {
@@ -9,7 +8,7 @@ class ExperienceModal extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {modal: false, selectedFile: null};
+        this.state = {modal: false, selectedFile: null, presentWork: false};
     }
 
     toggle() {
@@ -26,7 +25,7 @@ class ExperienceModal extends React.Component {
             selectedFile: event.target.files[0],
             loaded: 0,
         })
-    }
+    };
 
     submit() {
         //take props from props, not by Id
@@ -92,11 +91,11 @@ class ExperienceModal extends React.Component {
                                 <Col md={12}>
                                     <FormGroup>
                                         <Label>
-
                                             <input
                                                 type="checkbox"
-                                                defaultChecked={this.props.experience.presentWork}
-                                                onChange={(val) => this.props.updateExp(val)}
+                                                defaultChecked={this.props.experience.presentWork} name="presentWork"
+                                                value={this.state.presentWork}
+                                                onChange={(val) => this.setState({presentWork: val.target.checked})}
                                             />
                                             <span>I still work here!</span>
                                         </Label>
@@ -144,6 +143,7 @@ class ExperienceModal extends React.Component {
                                     <FormGroup>
                                         <Label for='area'>Area</Label>
                                         <Input type='text' name='area' id='area'
+                                               onChange={(val) => this.props.updateExp(val)}
                                                defaultValue={props.experience.location} placeholder='Bangalore'/>
                                     </FormGroup>
                                 </Col>
@@ -153,6 +153,7 @@ class ExperienceModal extends React.Component {
                                     <FormGroup>
                                         <Label for='description'>Description</Label>
                                         <Input type='text' name='description' id='description'
+                                               onChange={(val) => this.props.updateExp(val)}
                                                defaultValue={props.experience.description} placeholder=''/>
                                     </FormGroup>
                                 </Col>

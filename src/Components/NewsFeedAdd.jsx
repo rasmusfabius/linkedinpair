@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Card, Button, CardTitle, CardText, Row, Col} from 'reactstrap';
+import {Col, Row} from 'reactstrap';
 import NewsFeedModal from "./NewsFeedModal"
 
 import Api from "../Api";
@@ -15,9 +15,8 @@ class NewsFeedAdd extends Component {
             if (res && res._id && this.state.selectedFile) {
                 var formData = new FormData();
                 formData.append("post", this.state.selectedFile);
-                Api.request("/posts/" + res._id, "POST", formData);
-            }
-            this.props.refresh();
+                Api.request("/posts/" + res._id, "POST", formData).then(() => this.props.refresh());
+            } else this.props.refresh();
         });
     };
 

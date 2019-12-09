@@ -1,6 +1,5 @@
 import React from 'react';
-import {Jumbotron} from 'reactstrap';
-import {Col, Row, Form, FormGroup, Label, Input} from 'reactstrap';
+import {Col, Jumbotron, Row} from 'reactstrap';
 
 class AboutUs extends React.Component {
     state = {};

@@ -1,6 +1,7 @@
 import React from 'react';
 import ProfileModal from './ProfileModal';
-import {Col, Row, Form, FormGroup, Label, Input} from 'reactstrap';
+import {Col, Row} from 'reactstrap';
+
 class ProfileHeading extends React.Component {
     state = {};
 

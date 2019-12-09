@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import Profile from './Profile'
 
 export default class HomePage extends Component {
